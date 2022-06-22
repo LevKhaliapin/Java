@@ -1,9 +1,6 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
 
@@ -35,6 +32,7 @@ public class Main {
         }
 
         System.out.println(countAge(personList));
+        System.out.println(listAge(personList));
 
     }
 
@@ -52,5 +50,25 @@ public class Main {
         }
         return result;
     }
+
+    /*
+    Second level: Дан список Person {name,age}
+    Необходимо сформировать map, где ключ возраст, а значение - список людей данного возраста.
+     */
     
+    public static Map<Integer, List<Person>> listAge(List<Person> list) {
+        Map<Integer, List<Person>> result = new HashMap<>();
+        if (list == null || list.isEmpty()) return result;
+        for (int i = 0; i < list.size(); i++) {
+            List<Person> list1 = new ArrayList<Person>();
+            list1.add(list.get(i));
+            for (int j = 1; j < list.size(); j++ ) {
+                if (list.get(i).getAge() == list.get(j).getAge()){
+                    list1.add(list.get(j));
+                }
+            }
+            result.put(list.get(i).getAge(), new ArrayList<>(new HashSet<>(list1)));
+        }
+        return result;
+    }
 }
