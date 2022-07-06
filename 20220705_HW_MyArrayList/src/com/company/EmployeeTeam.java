@@ -2,18 +2,18 @@ package com.company;
 
 import java.util.Arrays;
 
-public class EmployeeTeam implements EmployeeTeamList{
+public class EmployeeTeam <T> implements EmployeeTeamList<T> {
     private int capacity = 3;
     private int currentIndex = 0;
     Employee[] team = new Employee[capacity];
 
 
     @Override
-    public void add(Employee e) {
+    public void add(T e) {
         if (currentIndex==capacity){
             increaseSize(capacity*2);
         }
-        team[currentIndex++] = e;
+        team[currentIndex++] = (Employee) e;
     }
 
     @Override
@@ -24,7 +24,7 @@ public class EmployeeTeam implements EmployeeTeamList{
     @Override
     public void increaseSize(int size) {
         if (size > capacity) {
-            Employee[] temp = new Employee[size];
+            Employee[] temp = new T[size];
             for (int i = 0; i < team.length; i++) {
                 temp[i] = team[i];
             }
@@ -34,12 +34,12 @@ public class EmployeeTeam implements EmployeeTeamList{
     }
 
     @Override
-    public Employee get(int index) {
+    public T get(int index) {
         if (index>=size()) {
             System.out.println("Элемент с указанным индексом не существует");
             return null;
         } else {
-            return team[index];
+            return (T) team[index];
         }
     }
 
@@ -64,7 +64,7 @@ public class EmployeeTeam implements EmployeeTeamList{
         return result;
     }
 
-    public int find(Employee e) {
+    public int find(T e) {
         for (int i = 0; i < team.length; i++) {
             if(team[i].equals(e)) {
                 return i;
