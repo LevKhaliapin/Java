@@ -24,7 +24,7 @@ public class EmployeeTeam <T> implements EmployeeTeamList<T> {
     @Override
     public void increaseSize(int size) {
         if (size > capacity) {
-            Employee[] temp = new T[size];
+            Employee[] temp = new Employee[size];
             for (int i = 0; i < team.length; i++) {
                 temp[i] = team[i];
             }
