@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class EmployeeTeam <T> implements EmployeeTeamList<T> {
     private int capacity = 3;
     private int currentIndex = 0;
-    Employee[] team = new Employee[capacity];
+    Object[] team = new Object[capacity];
 
 
     @Override
@@ -13,7 +13,7 @@ public class EmployeeTeam <T> implements EmployeeTeamList<T> {
         if (currentIndex==capacity){
             increaseSize(capacity*2);
         }
-        team[currentIndex++] = (Employee) e;
+        team[currentIndex++] = (T) e;
     }
 
     @Override
@@ -24,7 +24,7 @@ public class EmployeeTeam <T> implements EmployeeTeamList<T> {
     @Override
     public void increaseSize(int size) {
         if (size > capacity) {
-            Employee[] temp = new Employee[size];
+            Object[] temp = new Object[size];
             for (int i = 0; i < team.length; i++) {
                 temp[i] = team[i];
             }
